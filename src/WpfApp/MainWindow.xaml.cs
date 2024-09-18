@@ -12,7 +12,23 @@ namespace SimpleWPFApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            messageLabel.Content = "Button clicked!";
+            try
+            {
+                // Simulate an operation that might throw an exception
+                if (DateTime.Now.Second % 2 == 0)
+                {
+                    messageLabel.Content = "Button clicked successfully!";
+                }
+                else
+                {
+                    throw new Exception("An example error occurred.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                messageLabel.Content = "An error occurred. Please try again.";
+            }
         }
     }
 }
