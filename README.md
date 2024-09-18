@@ -1,6 +1,15 @@
 # SimpleWPFApp
 
-A simple C# WPF project demonstrating a basic GUI application with MSBuild integration.
+A simple C# WPF project demonstrating a basic GUI application with MSBuild integration and error handling.
+
+## Features
+
+- Basic WPF GUI with a button and label
+- MSBuild integration for easy building
+- Basic error handling:
+  - Catches and displays unhandled exceptions in both UI and non-UI threads
+  - Demonstrates proper exception handling in event handlers
+
 
 ## Project Structure
 
