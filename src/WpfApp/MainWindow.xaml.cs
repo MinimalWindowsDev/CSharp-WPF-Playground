@@ -16,24 +16,40 @@ namespace SimpleWPFApp
             IOItems.Add(new IOItem { Device = "Device1", Label = "Input1", Address = "0x001", IO = "Input", Value = "0" });
             IOItems.Add(new IOItem { Device = "Device2", Label = "Output1", Address = "0x002", IO = "Output", Value = "1" });
             DataContext = this;
+
+            // Add initial log message
+            LogTextBox.Text = "System initialized. Ready for operation.\n";
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             // Implement search functionality here
-            MessageBox.Show("Search functionality to be implemented.");
+            AddLogMessage("Search button clicked. Functionality to be implemented.");
         }
 
         private void OnOffToggle_Checked(object sender, RoutedEventArgs e)
         {
             // Implement ON/OFF toggle functionality here
-            MessageBox.Show("PLC " + (((System.Windows.Controls.Primitives.ToggleButton)sender).IsChecked == true ? "ON" : "OFF"));
+            System.Windows.Controls.Primitives.ToggleButton toggleButton = sender as System.Windows.Controls.Primitives.ToggleButton;
+            bool isOn = false;
+            if (toggleButton != null)
+            {
+                isOn = toggleButton.IsChecked.HasValue && toggleButton.IsChecked.Value;
+            }
+            AddLogMessage("PLC turned " + (isOn ? "ON" : "OFF"));
         }
 
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
-            // Implement log functionality here
-            MessageBox.Show("Log functionality to be implemented.");
+            // Add a sample log message
+            AddLogMessage("Log button clicked. This is a sample log message.");
+        }
+
+        private void AddLogMessage(string message)
+        {
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            LogTextBox.Text += "[" + timestamp + "] " + message + "\n";
+            LogTextBox.ScrollToEnd();
         }
     }
 

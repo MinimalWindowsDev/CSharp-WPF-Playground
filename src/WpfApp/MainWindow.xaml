@@ -10,10 +10,10 @@
         </Grid.RowDefinitions>
         
         <!-- Top section with search -->
-        <DockPanel Grid.Row="0" Margin="10">
-            <TextBlock Text="Search" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <TextBox Width="200" HorizontalAlignment="Left"/>
-            <Button Content="🔍" Width="30" Margin="5,0,0,0" Click="SearchButton_Click"/>
+        <DockPanel Grid.Row="0" Margin="10" LastChildFill="False">
+            <TextBlock Text="Search" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+            <Button Content="🔍" Width="30" DockPanel.Dock="Right" Click="SearchButton_Click"/>
+            <TextBox Width="200" Margin="10,0,5,0" DockPanel.Dock="Right"/>
         </DockPanel>
 
         <!-- Main content area -->
@@ -23,13 +23,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Left side with PLC image and ON/OFF switch -->
+            <!-- Left side with PLC image, ON/OFF switch, and Log -->
             <StackPanel Grid.Column="0" Margin="10">
                 <Border BorderBrush="Black" BorderThickness="1" Padding="5">
-                    <Image Source="plc_image.png" Width="300" Height="200"/>
+                    <Image Source="/SimpleWPFApp;component/plc_image.png" Width="300" Height="200"/>
                 </Border>
-                <ToggleButton Content="ON/OFF" Width="80" Height="30" Margin="0,10,0,0" Checked="OnOffToggle_Checked" Unchecked="OnOffToggle_Checked"/>
+                <Button Content="ON/OFF" Width="80" Height="30" Margin="0,10,0,0" Click="OnOffToggle_Checked"/>
                 <Button Content="Log" Width="80" Height="30" Margin="0,10,0,0" Click="LogButton_Click"/>
+                <TextBox x:Name="LogTextBox" Height="100" Margin="0,10,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
             </StackPanel>
 
             <!-- Right side with Digital and Analog I/O tables -->
