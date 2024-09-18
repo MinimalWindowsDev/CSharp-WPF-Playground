@@ -1,63 +1,60 @@
-# CSharp-WPF-Playground
+# SimpleWPFApp
 
-A simple C# WPF project demonstrating console, build automation, and MVVM patterns.
+A simple C# WPF project demonstrating a basic GUI application with MSBuild integration.
 
 ## Project Structure
 
-1. Console Application: "Hello World" C# console app
-2. Build Automation: Command-line compilation and cmd batch script
-3. VS Code Integration: Workspace setup, debugging, and build tasks (coming soon)
-4. WPF GUI: Simple MVVM implementation (coming soon)
+```
+SimpleWPFApp/
+│
+├── App.xaml
+├── App.xaml.cs
+├── MainWindow.xaml
+├── MainWindow.xaml.cs
+├── SimpleWPFApp.csproj
+├── build.bat
+└── README.md
+```
 
-## Current State: Hello World Console App
+## Current State: Basic WPF GUI Application
 
-The current state of the project is a simple "Hello World" console application with a build script. You can get to this state by checking out the `v0.1-hello-world` tag:
+The current state of the project is a simple WPF application with a button that updates a label when clicked. You can get to this state by checking out the `v0.2-wpf-gui` tag:
 
 ```
-git checkout v0.1-hello-world
-```
-
-### Project Structure at v0.1-hello-world
-
-```
-.gitignore
-build/ (created by build script)
-build.bat
-Program.cs
-README.md
+git checkout v0.2-wpf-gui
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- .NET Framework (for csc.exe)
+- .NET Framework 4.0 or later
+- MSBuild (typically included with .NET Framework)
 - Git
 
-### Building the Project
+### Building and Running the Project
 
 1. Clone the repository:
    ```
    git clone https://github.com/MinimalWindowsDev/CSharp-WPF-Playground
-   cd CSharp-WPF-Playground
+   cd SimpleWPFApp
    ```
-2. (Optional) Checkout the Hello World state:
+2. (Optional) Checkout the WPF GUI state:
    ```
-   git checkout v0.1-hello-world
+   git checkout v0.2-wpf-gui
    ```
 3. Run the build script:
    ```
    build.bat
    ```
-4. Run the compiled program:
-   ```
-   build\HelloWorld.exe
-   ```
+   This will compile the project and run the application if the build is successful.
 
-## Upcoming Features
+## Project Files
 
-- VS Code Integration: Workspace setup, debugging, and build tasks
-- WPF GUI: Simple MVVM implementation
+- `App.xaml` & `App.xaml.cs`: Define the application entry point
+- `MainWindow.xaml` & `MainWindow.xaml.cs`: Define the main window UI and logic
+- `SimpleWPFApp.csproj`: MSBuild project file for building the application
+- `build.bat`: Batch script to build and run the application
 
 ## License
 
