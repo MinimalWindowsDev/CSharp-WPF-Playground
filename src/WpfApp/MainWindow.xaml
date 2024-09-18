@@ -1,9 +1,78 @@
 <Window x:Class="SimpleWPFApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Simple WPF App" Height="200" Width="300">
-    <StackPanel>
-        <Label x:Name="messageLabel" Content="Hello, WPF!" Margin="10"/>
-        <Button Content="Click Me!" Click="Button_Click" Width="100" Height="30"/>
-    </StackPanel>
+        Title="Safety PLC Emulator" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Top section with search -->
+        <DockPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="Search" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBox Width="200" HorizontalAlignment="Left"/>
+            <Button Content="🔍" Width="30" Margin="5,0,0,0" Click="SearchButton_Click"/>
+        </DockPanel>
+
+        <!-- Main content area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left side with PLC image and ON/OFF switch -->
+            <StackPanel Grid.Column="0" Margin="10">
+                <Border BorderBrush="Black" BorderThickness="1" Padding="5">
+                    <Image Source="plc_image.png" Width="300" Height="200"/>
+                </Border>
+                <ToggleButton Content="ON/OFF" Width="80" Height="30" Margin="0,10,0,0" Checked="OnOffToggle_Checked" Unchecked="OnOffToggle_Checked"/>
+                <Button Content="Log" Width="80" Height="30" Margin="0,10,0,0" Click="LogButton_Click"/>
+            </StackPanel>
+
+            <!-- Right side with Digital and Analog I/O tables -->
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Digital I/O" FontWeight="Bold" Grid.Column="0"/>
+                    <TextBlock Text="Analog I/O" FontWeight="Bold" Grid.Column="1"/>
+                </Grid>
+
+                <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding IOItems}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Device" Binding="{Binding Device}" Width="*"/>
+                        <DataGridTextColumn Header="Label" Binding="{Binding Label}" Width="*"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*"/>
+                        <DataGridTextColumn Header="I/O" Binding="{Binding IO}" Width="*"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+
+        <!-- Bottom section with connection status -->
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock Text="Connection Status: Connected"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="IP Address: 192.168.18.10"/>
+            </StatusBarItem>
+            <Separator/>
+            <StatusBarItem>
+                <TextBlock Text="Port: 502"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
 </Window>
